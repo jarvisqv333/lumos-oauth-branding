@@ -46,26 +46,11 @@ account's own authorised credentials. Every action is triggered by a household m
 <h2>Why each permission is requested</h2>
 <ul>
 <li><code>auth/spreadsheets</code> — read and update the household's shared baby-care checklist
-in Google Sheets. <strong>In active use.</strong></li>
-<li><code>auth/drive</code> — locate and open the household's own files, including that
-checklist and documents the household archives.</li>
-<li><code>auth/calendar</code> — read and add household calendar events such as appointments
-and reminders.</li>
-<li><code>auth/gmail.readonly</code> — read household mail so Lumos can summarise it and
-surface anything awaiting a reply.</li>
-<li><code>auth/gmail.send</code> — send mail from the household account, on a household
-member's instruction.</li>
-<li><code>auth/gmail.modify</code> — label, archive and otherwise manage that mail, so the
-mailbox stays in the state the household wants.</li>
-<li><code>auth/contacts.readonly</code> — look up the correct recipient when a household
-member asks Lumos to send something.</li>
-<li><code>auth/documents.readonly</code> — read Google Docs the household shares with Lumos,
-such as household notes and reference documents.</li>
+in Google Sheets, for the household's own two members. <strong>In active use.</strong></li>
 </ul>
-<p class="note">Only the scope marked <strong>in active use</strong> is accessed today. The
-remainder are requested for household automation performed on this same dedicated account.
-A scope is only ever used for the purpose stated beside it, and never to serve anyone outside
-the household.</p>
+<p class="note">Lumos requests the narrowest scope that covers its function. Any further scope
+is added only when a household feature actually needs it, is limited to the purpose stated
+beside it, and is never used to serve anyone outside the household.</p>
 
 <h2>Data handling</h2>
 <p>OAuth tokens, and any data Lumos stores, remain on the household's own server; tokens are
