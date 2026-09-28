@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumos — Google API access</title>
+<!-- Google Search Console verification: paste the meta tag Google gives you directly below this line -->
+<style>
+:root{--fg:#14161a;--muted:#5b6270;--bg:#fff;--line:#e4e7ec;--card:#f7f8fa}
+@media (prefers-color-scheme:dark){:root{--fg:#e9ecf1;--muted:#9aa3b2;--bg:#0f1115;--line:#242a33;--card:#161a20}}
+*{box-sizing:border-box}
+body{margin:0;padding:2.5rem 1.25rem 4rem;background:var(--bg);color:var(--fg);
+ font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:44rem;margin:0 auto}
+h1{font-size:1.6rem;margin:0 0 .25rem}
+h2{font-size:1.05rem;margin:2rem 0 .5rem}
+.sub{color:var(--muted);margin:0 0 1.5rem}
+ul{padding-left:1.15rem}
+li{margin:.4rem 0}
+code{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--card);
+ border:1px solid var(--line);border-radius:4px;padding:.05rem .3rem}
+a{color:inherit}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;
+ padding:.75rem 1rem;color:var(--muted);font-size:.92rem}
+footer{margin-top:2.5rem;color:var(--muted);font-size:.9rem;
+ border-top:1px solid var(--line);padding-top:1rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Lumos</h1>
+<p class="sub">A private, self-hosted household assistant — one household, two people.
+It is not a public service: nobody else can sign up for it or use it.</p>
+
+<h2>What Lumos is</h2>
+<p>Lumos is a self-hosted software deployment running on a private server in the operator's
+home. It is operated for, and used by, a single household — the operator and their partner.
+It is not distributed, not offered as a service, and has no other users.</p>
+<p>Lumos connects to <em>its own</em> Google account — a dedicated account created for the
+deployment — using Google's standard OAuth 2.0 authorisation flow. When a household member
+asks it to do something (record a baby-care log entry, sync the household's shared checklist,
+tidy household mail, add an appointment), Lumos calls the relevant Google API with that
+account's own authorised credentials. Every action is triggered by a household member.</p>
+
+<h2>Why each permission is requested</h2>
+<ul>
+<li><code>auth/spreadsheets</code> — read and update the household's shared baby-care checklist
+in Google Sheets. <strong>In active use.</strong></li>
+<li><code>auth/drive</code> — locate and open the household's own files, including that
+checklist and documents the household archives.</li>
+<li><code>auth/calendar</code> — read and add household calendar events such as appointments
+and reminders.</li>
+<li><code>auth/gmail.readonly</code> — read household mail so Lumos can summarise it and
+surface anything awaiting a reply.</li>
+<li><code>auth/gmail.send</code> — send mail from the household account, on a household
+member's instruction.</li>
+<li><code>auth/gmail.modify</code> — label, archive and otherwise manage that mail, so the
+mailbox stays in the state the household wants.</li>
+<li><code>auth/contacts.readonly</code> — look up the correct recipient when a household
+member asks Lumos to send something.</li>
+<li><code>auth/documents.readonly</code> — read Google Docs the household shares with Lumos,
+such as household notes and reference documents.</li>
+</ul>
+<p class="note">Only the scope marked <strong>in active use</strong> is accessed today. The
+remainder are requested for household automation performed on this same dedicated account.
+A scope is only ever used for the purpose stated beside it, and never to serve anyone outside
+the household.</p>
+
+<h2>Data handling</h2>
+<p>OAuth tokens, and any data Lumos stores, remain on the household's own server; tokens are
+protected by operating-system file permissions and are never transmitted to a third party for
+storage. Nothing is sold, and nothing is disclosed to third parties for advertising or any
+other purpose. Full detail — including retention and how to revoke access — is in the
+<a href="privacy.html">privacy policy</a>.</p>
+
+<footer>
+<p>Lumos is a personal, non-commercial project.
+Contact: <a href="mailto:lumoqv334@gmail.com">lumoqv334@gmail.com</a> ·
+<a href="privacy.html">Privacy policy</a></p>
+</footer>
+</main>
+</body>
+</html>
